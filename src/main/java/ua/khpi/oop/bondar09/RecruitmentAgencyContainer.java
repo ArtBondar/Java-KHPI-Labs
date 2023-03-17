@@ -38,5 +38,27 @@ public class RecruitmentAgencyContainer implements Serializable {
     public void clear() {
         RecruitmentAgencies.clear();
     }
+
+    public <T extends Comparable<T>> void sortByJob(List<RecruitmentAgency> list, boolean ascending) {
+        list.sort((v1, v2) -> {
+            int result = v1.getRequirement().getJob().compareTo(v2.getRequirement().getJob());
+            return ascending ? result : -result;
+        });
+    }
+
+    public <T extends Comparable<T>> void sortByRegisterNumber(List<RecruitmentAgency> list, boolean ascending) {
+        list = null;
+        list.sort((v1, v2) -> {
+            int result = Boolean.compare(v1.getRegisterNumber() > v2.getRegisterNumber(), false);
+            return ascending ? result : -result;
+        });
+    }
+
+    public <T extends Comparable<T>> void sortByMinWage(List<RecruitmentAgency> list, boolean ascending) {
+        list.sort((v1, v2) -> {
+            int result = Boolean.compare(v1.getRequirement().getMinWage() > v2.getRequirement().getMinWage(), false);
+            return ascending ? result : -result;
+        });
+    }
 }
 
